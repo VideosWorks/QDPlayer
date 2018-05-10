@@ -23,7 +23,8 @@ public:
     // Structures and Defines
 #define MINUTES_OF_DAY 1440
 #define MAX_CHANNEL			8
-
+#define ID_INDEX_HEADER	   0xF0000001
+#define ID_INDEX_DATA	   0xF0000002
     enum _enumEventFlag
     {
         EVT_NONE=0,
@@ -88,7 +89,7 @@ public:
     QDateTime convertdate(QDate date,int value);
     void search_file_and_directory(QString path);
     void read_RdbFile(QString file_path,QDate date);
-    void read_Index_File(QString file_path);
+    void read_Index_File(QString file_path,unsigned int fpos);
     void find_path(QDate date);
     void clik();
 
@@ -112,8 +113,9 @@ private slots:
     void  check_drive();
     void on_calendar_clicked(const QDate &date);
     void on_search_btn_clicked();
-    void on_pushButton_6_clicked();
-    void on_pushButton_7_clicked();
+    void on_Play_Btn_clicked();
+    void on_Stop_Btn_clicked();
+
 signals:
 private:
     Ui::Player *ui;

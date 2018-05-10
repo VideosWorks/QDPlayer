@@ -135,7 +135,7 @@
           <item row="2" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
-             <widget class="QPushButton" name="pushButton_6">
+             <widget class="QPushButton" name="Play_Btn">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -148,7 +148,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_7">
+             <widget class="QPushButton" name="Stop_Btn">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -161,7 +161,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_5">
+             <widget class="QPushButton" name="Back_Btn">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -174,7 +174,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="Forward_Btn">
               <property name="minimumSize">
                <size>
                 <width>0</width>

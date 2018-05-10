@@ -220,7 +220,7 @@ void Plot::initAxis( int axis, const QString& title, Qt::TimeSpec timeSpec )
     setAxisMaxMajor( axis, 12);
     QDateTime startDate(dt1,QTime(0,0,0),Qt::UTC);
     QDateTime endDate(dt1,QTime(23,59,59),Qt::UTC);
-    qDebug( )<< " Satar Date : "<< startDate  << "        end date :    "<< endDate;
+    qDebug( )<< " Start Date : "<< startDate  << "        end date :    "<< endDate;
     QwtPlot::setAxisAutoScale(xTop,false);
     setAxisScale( QwtPlot::xTop, QwtDate::toDouble( startDate ),QwtDate::toDouble( endDate ));
     QwtPlot::setAxisAutoScale(xBottom, false);
@@ -285,7 +285,7 @@ void Plot::paint(QDateTime date1,QDateTime date2,int point,int camera)
     QPolygonF points;
     points << QPointF( d1, camera ) << QPointF( d2, camera );
     curve->setSamples( points );
-    qDebug()<<"omadı";
+
     curve->attach( this);
     replot();
 
@@ -329,7 +329,7 @@ void Plot::first_paint(QDateTime date1,QDateTime date2,int point)
         Curve4.setSamples( points );
         Curve4.attach(this);
     }
-    qDebug()<<"omadı";
+
     replot();
 }
 
