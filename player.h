@@ -77,7 +77,7 @@ public:
         short     width __attribute__ ((packed));	// video frame width
         short     height __attribute__ ((packed));	// video frame height
         unsigned int  capMode;
-        unsigned int  reserved1 __attribute__ ((packed));;
+        unsigned int  reserved1 __attribute__ ((packed));
         unsigned int  reserved2 __attribute__ ((packed));
     }T_INDEX_DATA;
 

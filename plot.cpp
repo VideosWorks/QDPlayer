@@ -258,8 +258,10 @@ void Plot::applyAxisSettings( int axis,QDate date)
 
 void Plot::paint(QDateTime date1,QDateTime date2,int point,int camera)
 {
-    double d1=QwtDate::toDouble(date1);
-    double d2=QwtDate::toDouble(date2);
+
+    double d1=QwtDate::toDouble(date1)+10800000;
+    double d2=QwtDate::toDouble(date2)+10800000;
+
     QwtPlotCurve *curve = new QwtPlotCurve();
     curve->setPaintAttribute(QwtPlotCurve::ClipPolygons, true);
     if(point==1)

@@ -344,6 +344,7 @@ QDateTime Player::convertdate(QDate date,int value)
 
 void Player::find_basket_id_and_pos(int  value)
 {
+    value=value-180;
   //    for(int i=0;i<4 ;i++)
   //    {
   //        for(int j=0;j<1440;j++)
