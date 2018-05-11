@@ -100,10 +100,10 @@ public:
     QStringList drive_list;
     QMessageBox message_box;
     T_RDBFILE t1;
-    QtAV::VideoOutput *m_vo1;
-    QtAV::VideoOutput *m_vo2;
-    QtAV::VideoOutput *m_vo3;
-    QtAV::VideoOutput *m_vo4;
+    QtAV::VideoOutput *m_renderer1;
+    QtAV::VideoOutput *m_renderer2;
+    QtAV::VideoOutput *m_renderer3;
+    QtAV::VideoOutput *m_renderer4;
     QtAV::AVPlayer *m_player;
     int m_unit;
 
@@ -113,8 +113,8 @@ private slots:
     void  check_drive();
     void on_calendar_clicked(const QDate &date);
     void on_search_btn_clicked();
-    void on_Play_Btn_clicked();
-    void on_Stop_Btn_clicked();
+//    void on_Play_Btn_clicked();
+//    void on_Stop_Btn_clicked();
 
 signals:
 private:

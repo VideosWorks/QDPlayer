@@ -45,40 +45,40 @@ public:
 private:
     QString format;
 };
-class  Pan:public QwtPlotPanner
-{
-public:
-    Pan(QWidget  *canvas):QwtPlotPanner(canvas)
-    {
+//class  Pan:public QwtPlotPanner
+//{
+//public:
+//  Pan(QWidget  *canvas):QwtPlotPanner(canvas)
+//  {
 
-    }
-    //        virtual void widgetMouseMoveEvent (QMouseEvent *)
-    //        {
-    //  qDebug()<< QwtPanner::grab();
-    //        qDebug()<<canvas()->rect().right();
-    //        qDebug()<<canvas()->rect().top();
-    //        qDebug()<<canvas()->rect().bottom();
-    //        const QwtScaleMap map = this->canvasMap( QwtPlot::xBottom );
-    //        qDebug() << "<<<<<<<<<<<<<<<<<";
-    //        qDebug() << "Left (p): " << d->plot->canvas()->rect().left();
-    //        qDebug() << "Right (p): " << d->plot->canvas()->rect().width();
-    //        qDebug() << "Left : " << d->plot->invTransform(QwtPlot::xBottom, 0);
-    //        qDebug() << "Right: " << d->plot->invTransform(QwtPlot::xBottom, d->plot->canvas()->rect().width());
-    //        qDebug() << "dx (p): " << dx;
-    //        qDebug() << "dx : " << d->plot->invTransform(QwtPlot::xBottom, fabs(dx));
-    //  qDebug()<<"gayar";
-    //}
-    //        virtual void moveCanvas (int dx, int dy)
-    //        {
-    //            qDebug()<<"gayar          dx     "<<  dx   <<"    dy "<< dy;
-    //         canvas()->move(dx,dy);
-    //        }
-    //      void panned(int dx, int dy)
-    //    {
-    //        qDebug()<<"gayar          dx     "<<  dx   <<"    dy "<< dy;
-    //    }
+//  }
+//  //        virtual void widgetMouseMoveEvent (QMouseEvent *)
+//  //        {
+//  //  qDebug()<< QwtPanner::grab();
+//  //        qDebug()<<canvas()->rect().right();
+//  //        qDebug()<<canvas()->rect().top();
+//  //        qDebug()<<canvas()->rect().bottom();
+//  //        const QwtScaleMap map = this->canvasMap( QwtPlot::xBottom );
+//  //        qDebug() << "<<<<<<<<<<<<<<<<<";
+//  //        qDebug() << "Left (p): " << d->plot->canvas()->rect().left();
+//  //        qDebug() << "Right (p): " << d->plot->canvas()->rect().width();
+//  //        qDebug() << "Left : " << d->plot->invTransform(QwtPlot::xBottom, 0);
+//  //        qDebug() << "Right: " << d->plot->invTransform(QwtPlot::xBottom, d->plot->canvas()->rect().width());
+//  //        qDebug() << "dx (p): " << dx;
+//  //        qDebug() << "dx : " << d->plot->invTransform(QwtPlot::xBottom, fabs(dx));
+//  //  qDebug()<<"gayar";
+//  //}
+//  //        virtual void moveCanvas (int dx, int dy)
+//  //        {
+//  //            qDebug()<<"gayar          dx     "<<  dx   <<"    dy "<< dy;
+//  //         canvas()->move(dx,dy);
+//  //        }
+//  //      void panned(int dx, int dy)
+//  //    {
+//  //        qDebug()<<"gayar          dx     "<<  dx   <<"    dy "<< dy;
+//  //    }
 
-};
+//};
 class mag:public QwtPlotMagnifier
 {
 public :
@@ -168,7 +168,7 @@ Plot::Plot( QWidget *parent ):
     initAxis( QwtPlot::xTop, "", Qt::UTC);
     initAxis( QwtPlot::xBottom,  "", Qt::UTC);
     // canvas kaydırılabilir hale getiriliyor
-    QwtPlotPanner *panner = new Pan( canvas() );
+    QwtPlotPanner *panner = new QwtPlotPanner( canvas() );
     //mouse ile zoomlama özelligi ekleniyor
     QwtPlotMagnifier *magnifier  = new mag( canvas() );
     //imlec ile uzak bulma koordinatı verme özelliği
@@ -225,7 +225,6 @@ void Plot::initAxis( int axis, const QString& title, Qt::TimeSpec timeSpec )
     setAxisScale( QwtPlot::xTop, QwtDate::toDouble( startDate ),QwtDate::toDouble( endDate ));
     QwtPlot::setAxisAutoScale(xBottom, false);
     setAxisScale( QwtPlot::xBottom, QwtDate::toDouble( startDate ) ,QwtDate::toDouble( endDate ));
-    setAxisScale(QwtPlot::yLeft,0,5);
     QDate dt2=QDate::currentDate();
     first_paint(convertdate(dt2,0),convertdate(dt2,1439),1);
     first_paint(convertdate(dt2,0),convertdate(dt2,1439),2);
@@ -259,8 +258,11 @@ void Plot::applyAxisSettings( int axis,QDate date)
 void Plot::paint(QDateTime date1,QDateTime date2,int point,int camera)
 {
 
-    double d1=QwtDate::toDouble(date1)+10800000;
-    double d2=QwtDate::toDouble(date2)+10800000;
+//    double d1=QwtDate::toDouble(date1)+10800000;
+//    double d2=QwtDate::toDouble(date2)+10800000;
+
+    double d1=QwtDate::toDouble(date1);
+    double d2=QwtDate::toDouble(date2);
 
     QwtPlotCurve *curve = new QwtPlotCurve();
     curve->setPaintAttribute(QwtPlotCurve::ClipPolygons, true);

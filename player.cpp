@@ -37,10 +37,17 @@ Player::Player(QWidget *parent) :
                      "QTabBar::tab:selected {width:500;height:20;margin : 1;radius:15; color:white;font:bold;font-size:8pt;background-color:gray}";
   ui->tabWidget->setStyleSheet(tabStyle);
   ui->calendar->setStyleSheet("selection-background-color: blue;   selection-color: white ");
-  ui->pushButton->setStyleSheet("background-image:url(video_bk.jpg)");
-  ui->pushButton_2->setStyleSheet("background-image:url(video_bk.jpg)");
-  ui->pushButton_3->setStyleSheet("background-image:url(video_bk.jpg)");
-  ui->pushButton_4->setStyleSheet("background-image:url(video_bk.jpg)");
+// ui->pushButton->setStyleSheet("background-image:url(video_bk.jpg)");
+//  ui->pushButton_2->setStyleSheet("background-image:url(video_bk.jpg)");
+//  ui->pushButton_3->setStyleSheet("background-image:url(video_bk.jpg)");
+//  ui->pushButton_4->setStyleSheet("background-image:url(video_bk.jpg)");
+//  ui->pushButton->setVisible(false);
+//  ui->pushButton_2->setVisible(false);
+//  ui->pushButton_3->setVisible(false);
+//  ui->pushButton_4->setVisible(false);
+
+
+
   //Kullanılacak nesneler oluşturuluyor
   d_plot = new Plot();
   d_plot1 = new Plot();
@@ -56,36 +63,38 @@ Player::Player(QWidget *parent) :
   m_unit = 1000;
   m_player = new AVPlayer(this);
   m_player->setSeekType(KeyFrameSeek);
-  m_vo1 = new VideoOutput(this);
-  if (!m_vo1->widget()) {
+  m_renderer1 = new VideoOutput(this);
+  if (!m_renderer1->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 1"));
       return;
     }
-  m_vo2 = new VideoOutput(this);
-  if (!m_vo2->widget()) {
+  m_renderer2 = new VideoOutput(this);
+  if (!m_renderer2->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 2"));
       return;
     }
-  m_vo3 = new VideoOutput(this);
-  if (!m_vo3->widget()) {
+  m_renderer3 = new VideoOutput(this);
+  if (!m_renderer3->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 3"));
       return;
     }
-  m_vo4 = new VideoOutput(this);
-  if (!m_vo4->widget()) {
+  m_renderer4 = new VideoOutput(this);
+  if (!m_renderer4->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 4"));
       return;
     }
-  m_player->addVideoRenderer(m_vo1, 0);
-  m_player->addVideoRenderer(m_vo2, 1);
-  m_player->addVideoRenderer(m_vo3, 2);
-  m_player->addVideoRenderer(m_vo4, 3);
-  m_player->setFrameRate(12);
-
-  ui->video_grid_layout->addWidget(m_vo1->widget(), 0, 0);
-  ui->video_grid_layout->addWidget(m_vo2->widget(), 0, 1);
-  ui->video_grid_layout->addWidget(m_vo3->widget(), 1, 0);
-  ui->video_grid_layout->addWidget(m_vo4->widget(), 1, 1);
+  m_player->addVideoRenderer(m_renderer1, 0);
+//  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
+  m_player->addVideoRenderer(m_renderer2, 1);
+//  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
+  m_player->addVideoRenderer(m_renderer3, 2);
+//  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
+  m_player->addVideoRenderer(m_renderer4, 3);
+//  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
+  ui->renderer_layout->addWidget(m_renderer1->widget(), 0, 0);
+  ui->renderer_layout->addWidget(m_renderer2->widget(), 0, 1);
+  ui->renderer_layout->addWidget(m_renderer3->widget(), 1, 0);
+  ui->renderer_layout->addWidget(m_renderer4->widget(), 1, 1);
 }
 
 
@@ -134,6 +143,7 @@ QStringList date_path_list;
 QString new_path;
 QString rdb_file;
 QString basket_file;
+QString last_basket_file;
 void Player::search_file_and_directory(QString path)
 {
   d_plot->set_player(this);
@@ -227,9 +237,10 @@ void Player::find_path(QDate date)
     }
 }
 
-
+QStringList exist_record_list;
 void Player::read_RdbFile(QString file_path,QDate date)
 {
+  exist_record_list.clear();
   qDebug()<<"path: "<< file_path;
   qDebug() << "*n\n\n Start read rdb file ";
   d_plot->first_paint(convertdate(date,0),convertdate(date,1439),1);
@@ -296,6 +307,14 @@ void Player::read_RdbFile(QString file_path,QDate date)
                       qDebug() <<"last value    :   "<< last_vaule  << "current value : "     <<current_value;
                       qDebug()<< "i   :      "<< i << "      j:    "<< j;
                       qDebug()<<"---------------------1 icin---------------------------";
+                      for(;last_vaule<=j;last_vaule++)
+                        {
+                          if(!exist_record_list.contains(QString::number(last_vaule)))
+                            {
+                              exist_record_list += QString::number(last_vaule,10);
+                            }
+
+                        }
                       d_plot->paint(convertdate(date,start_value),convertdate(date,j),1,i+1);
                     }
                   if(last_vaule==2)
@@ -318,7 +337,6 @@ void Player::read_RdbFile(QString file_path,QDate date)
                   last_vaule=current_value;
                 }
             }
-
         }
     }
   if(date !=QDate::currentDate())
@@ -341,10 +359,9 @@ QDateTime Player::convertdate(QDate date,int value)
   QDateTime return_date=QDateTime(date,time,Qt::UTC);
   return return_date;
 }
-
 void Player::find_basket_id_and_pos(int  value)
 {
-    value=value-180;
+//  value=value-180;
   //    for(int i=0;i<4 ;i++)
   //    {
   //        for(int j=0;j<1440;j++)
@@ -357,27 +374,31 @@ void Player::find_basket_id_and_pos(int  value)
   //    qDebug()<< "Total  Size : "<< sizeof(t1);
   //    qDebug() <<  "\n\n\n ---rdb  read  finished ---";
   int find_bkt=0;
-  for(int ch=0;ch<MAX_CHANNEL;ch++)
+
+  if(exist_record_list.contains(QString::number(value,10)))
     {
-      if(t1.RdbFile[value][ch].bid !=0  && t1.RdbFile[value][ch].idx_pos!=0)
+      for(int ch=0;ch<MAX_CHANNEL;ch++)
         {
-          find_bkt=1;
-          QString index_file_name ;
-          int path_ind=new_path.indexOf("rdb");
-          index_file_name=QString::number( t1.RdbFile[value][ch].bid);
-          while(index_file_name.size()<8)
+          if(t1.RdbFile[value][ch].bid !=0  && t1.RdbFile[value][ch].idx_pos!=0)
             {
-              index_file_name="0"+index_file_name;
+              find_bkt=1;
+              QString index_file_name ;
+              int path_ind=new_path.indexOf("rdb");
+              index_file_name=QString::number( t1.RdbFile[value][ch].bid);
+              while(index_file_name.size()<8)
+                {
+                  index_file_name="0"+index_file_name;
+                }
+              rdb_file=new_path.mid(0, path_ind)+index_file_name+".idx";
+              basket_file=new_path.mid(0, path_ind)+index_file_name+".bkt";
+              m_player->setFile(basket_file);
+              read_Index_File(new_path.mid(0, path_ind)+index_file_name+".idx",t1.RdbFile[value][ch].idx_pos);
             }
-          rdb_file=new_path.mid(0, path_ind)+index_file_name+".idx";
-          basket_file=new_path.mid(0, path_ind)+index_file_name+".bkt";
-          m_player->play(basket_file);
-          read_Index_File(new_path.mid(0, path_ind)+index_file_name+".idx",t1.RdbFile[value][ch].idx_pos);
         }
-    }
-  if(find_bkt==0)
-    {
-      m_player->stop();
+      if(find_bkt==0)
+        {
+          m_player->stop();
+        }
     }
 }
 
@@ -440,68 +461,75 @@ void Player::read_Index_File(QString file_path,unsigned int fpos )
               fseek(idx,fpos,SEEK_SET);
               if(fread((unsigned char *)&idd, 1, sizeof(T_INDEX_DATA), idx) && index_count<=ihd.count )
                 {
-                  if(QString::number(idd.id, 16) =="f0000002")
+                  if(first_seek==0)
                     {
-                      int64_t pos, pts;
-                      pts = idd.ts.sec * (int64_t)1000000 + idd.ts.usec;
-                      pos = idd.fpos;
-                      char t1_buf[32];
-                      pts_to_string_buf(pts, t1_buf, sizeof(t1_buf));
+                      if(QString::number(idd.id, 16) =="f0000002")
+                        {
+                          int64_t pos, pts;
+                          pts = idd.ts.sec * (int64_t)1000000 + idd.ts.usec;
+                          pos = idd.fpos;
+                          char t1_buf[32];
+                          pts_to_string_buf(pts, t1_buf, sizeof(t1_buf));
+                          qDebug()<< QString::number(idd.id, 16) << "T_TS :  " << t1_buf << " idd fpos :"<<idd.fpos << " idd ch :"<< idd.ch<< " s_type : "<< idd.s_type<< "event :"<< idd.event  << " width :   "<< idd.width << " height : "<< idd.height << " cap mode :"<< idd.capMode;
+                         if(m_player->isPlaying())
+                           {
+                              m_player->stop();
+                           }
+                         m_player->setFile(basket_file);
+                          QVariantHash opt;
+                          opt[QString::fromLatin1("jump_to_pos")] = QString::fromLatin1(QByteArray::number(idd.fpos));
+                          qDebug()<< " idd fpos :  "<<  idd.fpos   << " byte array      : "<< QByteArray::number(idd.fpos);
+                          m_player->setOptionsForFormat(opt);
+                          m_player->play();
+                          first_seek==1;
 
-                    if(first_seek==0)
-                      {
-                        qDebug()<< QString::number(idd.id, 16) << "T_TS :  " << t1_buf << " idd fpos :"<<idd.fpos << " idd ch :"<< idd.ch<< " s_type : "<< idd.s_type<< "event :"<< idd.event  << " width :   "<< idd.width << " height : "<< idd.height << " cap mode :"<< idd.capMode;
-                        qint64 a= idd.fpos;
-                        qDebug() <<"seek value :"<<a;
-                         m_player->seek(a);
-                      }
-
-
+                        }
+                      else
+                        {
+                          qDebug() << "index data id   is not correct :" << idd.id;
+                        }
                     }
-                  else
-                    {
-                      qDebug() << "header id  is not correct :" << idd.id;
-                    }
+
                 }
-                             //          while(fread((unsigned char *)&idd, 1, sizeof(T_INDEX_DATA), idx) && index_count<=ihd.count )
-                             //            {
-                             //              int64_t pos, pts;
-                             //              pts = idd.ts.sec * (int64_t)1000000 + idd.ts.usec;
-                             //              pos = idd.fpos;
-                             //              char t1_buf[32];
-                             //              pts_to_string_buf(pts, t1_buf, sizeof(t1_buf));
-                             //              qDebug()<< QString::number(idd.id, 16) << "T_TS :  " << t1_buf << " idd fpos :"<<idd.fpos << " idd ch :"<< idd.ch<< " s_type : "<< idd.s_type<< "event :"<< idd.event  << " width :   "<< idd.width << " height : "<< idd.height << " cap mode :"<< idd.capMode;
-                             //              index_count++;
-                             //            }
+              //          while(fread((unsigned char *)&idd, 1, sizeof(T_INDEX_DATA), idx) && index_count<=ihd.count )
+              //            {
+              //              int64_t pos, pts;
+              //              pts = idd.ts.sec * (int64_t)1000000 + idd.ts.usec;
+              //              pos = idd.fpos;
+              //              char t1_buf[32];
+              //              pts_to_string_buf(pts, t1_buf, sizeof(t1_buf));
+              //              qDebug()<< QString::number(idd.id, 16) << "T_TS :  " << t1_buf << " idd fpos :"<<idd.fpos << " idd ch :"<< idd.ch<< " s_type : "<< idd.s_type<< "event :"<< idd.event  << " width :   "<< idd.width << " height : "<< idd.height << " cap mode :"<< idd.capMode;
+              //              index_count++;
+              //            }
             }
           else
             {
               qDebug()<< " index heard id is not correct ";
             }
         }
-
     }
 }
 
-void Player::on_Play_Btn_clicked()
-{
-  qint64 x=26368;
-  qDebug()<< x;
-  if (!m_player->isPlaying()) {
-      m_player->play();
-      return;
-    }
-  m_player->pause(!m_player->isPaused());
-  //  m_player->seek(x);
 
-}
+//void Player::on_Play_Btn_clicked()
+//{
+//  qint64 x=26368;
+//  qDebug()<< x;
+//  if (!m_player->isPlaying()) {
+//      m_player->play();
+//      return;
+//    }
+//  m_player->pause(!m_player->isPaused());
+//  //  m_player->seek(x);
 
-void Player::on_Stop_Btn_clicked()
-{
-  m_player->stop();
-  //   qDebug()<<"stopp";
-  //  qint64 x=1136722;
-  //  m_player->seek(x);
+//}
 
-}
+//void Player::on_Stop_Btn_clicked()
+//{
+//  m_player->stop();
+//  //   qDebug()<<"stopp";
+//  //  qint64 x=1136722;
+//  //  m_player->seek(x);
+
+//}
 
