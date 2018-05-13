@@ -113,16 +113,16 @@ private slots:
     void  check_drive();
     void on_calendar_clicked(const QDate &date);
     void on_search_btn_clicked();
-//    void on_Play_Btn_clicked();
-//    void on_Stop_Btn_clicked();
+    void on_Play_Btn_clicked();
+    void on_Stop_Btn_clicked();
+    void on_Back_Btn_clicked();
+    void on_Forward_Btn_clicked();
 
 signals:
 private:
     Ui::Player *ui;
     Plot *d_plot;
-    Plot *d_plot1;
-    Plot *d_plot2;
-    Plot *d_plot3;
+
 };
 
 #endif // PLAYER_H

@@ -21,6 +21,11 @@ public:
     QwtPlotCurve  Curve2;
     QwtPlotCurve  Curve3;
     QwtPlotCurve  Curve4;
+
+    QwtPlotCurve  rec_curve1;
+    QwtPlotCurve  rec_curve2;
+    QwtPlotCurve  rec_curve3;
+    QwtPlotCurve  rec_curve4;
     void set_player(Player *p);
     int curve_status=0;
     void   Stick(QDateTime datetime1);

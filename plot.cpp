@@ -45,40 +45,23 @@ public:
 private:
     QString format;
 };
-//class  Pan:public QwtPlotPanner
-//{
-//public:
-//  Pan(QWidget  *canvas):QwtPlotPanner(canvas)
-//  {
+class  Pan:public QwtPlotPanner
+{
+public:
+    Pan(QWidget  *canvas):QwtPlotPanner(canvas)
+    {
 
-//  }
-//  //        virtual void widgetMouseMoveEvent (QMouseEvent *)
-//  //        {
-//  //  qDebug()<< QwtPanner::grab();
-//  //        qDebug()<<canvas()->rect().right();
-//  //        qDebug()<<canvas()->rect().top();
-//  //        qDebug()<<canvas()->rect().bottom();
-//  //        const QwtScaleMap map = this->canvasMap( QwtPlot::xBottom );
-//  //        qDebug() << "<<<<<<<<<<<<<<<<<";
-//  //        qDebug() << "Left (p): " << d->plot->canvas()->rect().left();
-//  //        qDebug() << "Right (p): " << d->plot->canvas()->rect().width();
-//  //        qDebug() << "Left : " << d->plot->invTransform(QwtPlot::xBottom, 0);
-//  //        qDebug() << "Right: " << d->plot->invTransform(QwtPlot::xBottom, d->plot->canvas()->rect().width());
-//  //        qDebug() << "dx (p): " << dx;
-//  //        qDebug() << "dx : " << d->plot->invTransform(QwtPlot::xBottom, fabs(dx));
-//  //  qDebug()<<"gayar";
-//  //}
-//  //        virtual void moveCanvas (int dx, int dy)
-//  //        {
-//  //            qDebug()<<"gayar          dx     "<<  dx   <<"    dy "<< dy;
-//  //         canvas()->move(dx,dy);
-//  //        }
-//  //      void panned(int dx, int dy)
-//  //    {
-//  //        qDebug()<<"gayar          dx     "<<  dx   <<"    dy "<< dy;
-//  //    }
+    }
+    virtual void widgetMouseMoveEvent (QMouseEvent *)
+    {
+        qDebug()<< QwtPanner::grab();
+        qDebug()<<canvas()->rect().right();
+        qDebug()<<canvas()->rect().top();
+        qDebug()<<canvas()->rect().bottom();
 
-//};
+        qDebug()<<"gayar";
+    }
+};
 class mag:public QwtPlotMagnifier
 {
 public :
@@ -122,10 +105,9 @@ protected:
     virtual QwtText trackerTextF( const QPointF &pos ) const
     {
         const QDateTime dt = QwtDate::toDateTime( pos.x() );
-        //      QString dt= QDateTime::fromTime_t(pos.x()).toUTC().toString("yyyy MMM dd hh:mm:ss:zz");
         QString s;
         s += QwtDate::toString( QwtDate::toDateTime( pos.x() ),
-                                "yyyy MMM dd hh:mm:ss ", QwtDate::FirstDay);
+                                "hh:mm:ss ", QwtDate::FirstDay);
         QwtText text( s );
         text.setColor( Qt::white );
         QColor c = rubberBandPen().color();
@@ -143,7 +125,6 @@ static double current_space=600000;
 Plot::Plot( QWidget *parent ):
     QwtPlot( parent )
 {
-    qDebug()<<"canvas border :  "<<canvas()->backingStore();
     zoomout_cnt=0;
     Carve.setStyle(QwtPlotCurve::Lines);
     Carve.setPen( Qt::white, 2),
@@ -157,6 +138,7 @@ Plot::Plot( QWidget *parent ):
     Carve1.setBaseline(1000);
     this->setMaximumHeight(180);
     this->setMinimumHeight(180);
+
     //çercevedeki etikleteri gösterilmesini saglar
     setAutoFillBackground( true);
     //çerceve rengi
@@ -164,11 +146,11 @@ Plot::Plot( QWidget *parent ):
     // iç canvas rengi
     setCanvasBackground( Qt::white);
     zoomin_cnt=0;
-    plotLayout()->setAlignCanvasToScales(false );
+    //  plotLayout()->setAlignCanvasToScales(false );
     initAxis( QwtPlot::xTop, "", Qt::UTC);
     initAxis( QwtPlot::xBottom,  "", Qt::UTC);
     // canvas kaydırılabilir hale getiriliyor
-    QwtPlotPanner *panner = new QwtPlotPanner( canvas() );
+    QwtPlotPanner *panner = new Pan( canvas() );
     //mouse ile zoomlama özelligi ekleniyor
     QwtPlotMagnifier *magnifier  = new mag( canvas() );
     //imlec ile uzak bulma koordinatı verme özelliği
@@ -195,6 +177,8 @@ Plot::Plot( QWidget *parent ):
     QDate dt2=QDate::currentDate();
     current_x=QwtDate::toDouble(convertdate(dt2,720));
     Stick(convertdate(dt2,720));
+
+
 }
 
 void Plot::initAxis( int axis, const QString& title, Qt::TimeSpec timeSpec )
@@ -226,10 +210,13 @@ void Plot::initAxis( int axis, const QString& title, Qt::TimeSpec timeSpec )
     QwtPlot::setAxisAutoScale(xBottom, false);
     setAxisScale( QwtPlot::xBottom, QwtDate::toDouble( startDate ) ,QwtDate::toDouble( endDate ));
     QDate dt2=QDate::currentDate();
+    setAxisScale(QwtPlot::yLeft,0,4);
+    setAxisScale(axis,1,60);
     first_paint(convertdate(dt2,0),convertdate(dt2,1439),1);
     first_paint(convertdate(dt2,0),convertdate(dt2,1439),2);
     first_paint(convertdate(dt2,0),convertdate(dt2,1439),3);
     first_paint(convertdate(dt2,0),convertdate(dt2,1439),4);
+
     replot();
 }
 
@@ -257,10 +244,6 @@ void Plot::applyAxisSettings( int axis,QDate date)
 
 void Plot::paint(QDateTime date1,QDateTime date2,int point,int camera)
 {
-
-//    double d1=QwtDate::toDouble(date1)+10800000;
-//    double d2=QwtDate::toDouble(date2)+10800000;
-
     double d1=QwtDate::toDouble(date1);
     double d2=QwtDate::toDouble(date2);
 
@@ -268,31 +251,82 @@ void Plot::paint(QDateTime date1,QDateTime date2,int point,int camera)
     curve->setPaintAttribute(QwtPlotCurve::ClipPolygons, true);
     if(point==1)
     {
-        curve->setPen( Qt::blue, 20),
-                curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
+
+        rec_curve1.setPen( Qt::blue, 20),
+                rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve2.setPen( Qt::blue, 20),
+                rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve3.setPen( Qt::blue, 20),
+                rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve4.setPen( Qt::blue, 20),
+                rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+
     }
     if(point==2)
     {
-        curve->setPen( Qt::red, 20),
-                curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
+
+        rec_curve1.setPen( Qt::red, 20),
+                rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve2.setPen( Qt::red, 20),
+                rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve3.setPen( Qt::red, 20),
+                rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve4.setPen( Qt::red, 20),
+                rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     }
     if(point==3)
     {
-        curve->setPen( Qt::yellow, 20),
-                curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
+
+        rec_curve1.setPen( Qt::yellow, 20),
+                rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve2.setPen( Qt::yellow, 20),
+                rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve3.setPen( Qt::yellow, 20),
+                rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve4.setPen( Qt::yellow, 20),
+                rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     }
     if(point==4)
     {
-        curve->setPen( Qt::green, 20),
-                curve->setRenderHint( QwtPlotItem::RenderAntialiased, true );
+
+        rec_curve1.setPen( Qt::green, 20),
+                rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve2.setPen( Qt::green, 20),
+                rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve3.setPen( Qt::green, 20),
+                rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
+        rec_curve4.setPen( Qt::green, 20),
+                rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     }
-    QPolygonF points;
-    points << QPointF( d1, camera ) << QPointF( d2, camera );
-    curve->setSamples( points );
-
-    curve->attach( this);
+    if(camera==1)
+    {
+        QPolygonF points;
+        points << QPointF( d1, camera ) << QPointF( d2, camera );
+        rec_curve1.setSamples( points );
+        rec_curve1.attach(this);
+    }
+    if(camera==2)
+    {
+        QPolygonF points;
+        points << QPointF( d1, camera ) << QPointF( d2, camera );
+        rec_curve2.setSamples( points );
+        rec_curve2.attach(this);
+    }
+    if(camera==3)
+    {
+        QPolygonF points;
+        points << QPointF( d1, camera ) << QPointF( d2, camera );
+        rec_curve3.setSamples( points );
+        rec_curve3.attach(this);
+    }
+    if(camera==4)
+    {
+        QPolygonF points;
+        points << QPointF( d1, camera ) << QPointF( d2, camera );
+        rec_curve4.setSamples( points );
+        rec_curve4.attach(this);
+    }
     replot();
-
 }
 
 void Plot::first_paint(QDateTime date1,QDateTime date2,int point)
@@ -333,7 +367,6 @@ void Plot::first_paint(QDateTime date1,QDateTime date2,int point)
         Curve4.setSamples( points );
         Curve4.attach(this);
     }
-
     replot();
 }
 
@@ -350,6 +383,7 @@ void Plot::mousePressEvent(QMouseEvent* event)
     double x = this-> invTransform (this -> xBottom, event -> pos().x());
     current_x=x;
     double y = this -> invTransform (this -> yLeft, event -> pos().y());
+
     QDateTime tm1 = QwtDate::toDateTime(x,Qt::UTC);
     QString hour_and_minute_str=tm1.toString("hh:mm");
     bool ok(false);
@@ -360,14 +394,10 @@ void Plot::mousePressEvent(QMouseEvent* event)
     points1 << QPointF( x, 0.5 )<<QPointF(x-current_space,0) <<  QPointF(x+current_space,0)      << QPointF( x, 0.5)
             << QPointF( x, 4.5 )<<QPointF(x-current_space,5) <<  QPointF(x+current_space,5)      << QPointF( x, 4.5);
 
-    if(curve_status==0)
-    {
-        Carve.setSamples(points1);
-        Carve.attach(this);
-    }
 
-    if(curve_status==1)
+    if(curve_status==1 )
     {
+        Carve.detach();
         Carve1.setSamples(points1);
         Carve1.attach(this);
     }
@@ -407,6 +437,7 @@ void Plot::Stick(QDateTime datetime1)
 
 void Plot::Stick1(QDateTime datetime1)
 {
+
     current_space=600000;
     zoomout_cnt=0;
     curve_status=1;
@@ -444,11 +475,6 @@ void Plot::wheelEvent(QWheelEvent *event)
     QPolygonF points2;
     points2 << QPointF( current_x, 0.5 )<<QPointF(current_x - current_space,0) <<  QPointF(current_x+current_space,0)      << QPointF( current_x, 0.5)
             << QPointF( current_x, 4.5 )<<QPointF(current_x - current_space,5) <<  QPointF(current_x+current_space,5)      << QPointF(current_x, 4.5);
-    if(curve_status==0)
-    {
-        Carve.setSamples(points2);
-        Carve.attach(this);
-    }
     if(curve_status==1)
     {
         Carve1.setSamples(points2);
