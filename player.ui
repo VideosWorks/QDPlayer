@@ -155,21 +155,17 @@
           <item row="0" column="0">
            <layout class="QGridLayout" name="renderer_layout">
             <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
+             <enum>QLayout::SetMinimumSize</enum>
             </property>
-            <item row="0" column="0">
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
+            <property name="topMargin">
+             <number>5</number>
+            </property>
+            <property name="rightMargin">
+             <number>5</number>
+            </property>
+            <property name="bottomMargin">
+             <number>5</number>
+            </property>
            </layout>
           </item>
          </layout>

@@ -32,7 +32,7 @@ Player::Player(QWidget *parent) :
 {
     ui->setupUi(this);
     this->setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:0, y2:0, stop:0 rgba(91, 204, 233, 100), stop:1 rgba(32, 80, 96,100)); ");
-    QString tabStyle = "QTabBar {width:500;height:20;margin : 1;radius:5; color:white;font:bold;}"
+    QString tabStyle = "QTabBar {width:200;height:20;margin : 1;radius:5; color:white;font:bold;}"
                        "QTabBar::tab:!selected {width:500;height:20;margin : 1;radius:15; color:white;font:bold;font-size:10pt;}"
                        "QTabBar::tab:selected {width:500;height:20;margin : 1;radius:15; color:white;font:bold;font-size:8pt;background-color:gray}";
     ui->tabWidget->setStyleSheet(tabStyle);
@@ -99,6 +99,7 @@ Player::~Player()
     delete ui;
 }
 
+
 void Player::check_drive()
 {
     drive_list.clear();
@@ -114,6 +115,7 @@ void Player::check_drive()
             ui->drive_cbx->addItem(drive_list[i]);
         }
     }
+
 }
 
 
@@ -387,10 +389,11 @@ void Player::find_basket_id_and_pos(int  value)
     {
         if(basket_file.size() !=0)
         {
-             m_player->stop();
+            m_player->stop();
         }
 
     }
+
 
 }
 
@@ -468,7 +471,7 @@ void Player::read_Index_File(QString file_path,unsigned int fpos )
                             m_player->setFile(basket_file);
                             QVariantHash opt;
                             opt[QString::fromLatin1("jump_to_pos")] = QString::fromLatin1(QByteArray::number(idd.fpos));
-                            qDebug()<< " idd fpos :  "<<  idd.fpos   << " byte array      : "<< QByteArray::number(idd.fpos);
+                            qDebug()<< " idd fpos :  "<<  idd.fpos   << " byte array      : "<< QByteArray::number(idd.fpos)<< " width height  "<< idd.width   << idd.height;
                             m_player->setOptionsForFormat(opt);
                             m_player->play();
                             first_seek==1;
@@ -513,9 +516,10 @@ void Player::on_Stop_Btn_clicked()
 void Player::on_Back_Btn_clicked()
 {
 
+    m_player->seekBackward();
 }
 
 void Player::on_Forward_Btn_clicked()
 {
-
+    m_player->seekForward();
 }
