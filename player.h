@@ -92,6 +92,7 @@ public:
     void read_Index_File(QString file_path,unsigned int fpos);
     void find_path(QDate date);
     void clik();
+    void mousePressEvent(QMouseEvent *event);
 
 
     // Values  and Widgets

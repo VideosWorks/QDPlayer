@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1191</width>
-    <height>1002</height>
+    <width>1315</width>
+    <height>1337</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -75,6 +75,101 @@
         <string>Local Disk</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
+        <item row="1" column="0" colspan="2">
+         <layout class="QGridLayout" name="chart_grid_layout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+         </layout>
+        </item>
+        <item row="0" column="0">
+         <layout class="QVBoxLayout" name="date_time_vertical_layout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout"/>
+          </item>
+          <item>
+           <widget class="QComboBox" name="drive_cbx">
+            <property name="currentText">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QPushButton" name="select_folder_btn">
+              <property name="text">
+               <string>Select Folder</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="search_btn">
+              <property name="text">
+               <string>Search</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <widget class="QCalendarWidget" name="calendar">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>500</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="gridVisible">
+             <bool>true</bool>
+            </property>
+            <property name="horizontalHeaderFormat">
+             <enum>QCalendarWidget::SingleLetterDayNames</enum>
+            </property>
+            <property name="verticalHeaderFormat">
+             <enum>QCalendarWidget::NoVerticalHeader</enum>
+            </property>
+            <property name="navigationBarVisible">
+             <bool>true</bool>
+            </property>
+            <property name="dateEditEnabled">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </item>
         <item row="0" column="1">
          <layout class="QGridLayout" name="video_grid_layout">
           <property name="sizeConstraint">
@@ -83,7 +178,29 @@
           <property name="rightMargin">
            <number>0</number>
           </property>
-          <item row="1" column="3">
+          <item row="0" column="2">
+           <layout class="QGridLayout" name="renderer_layout" rowstretch="0" columnstretch="0">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="spacing">
+             <number>0</number>
+            </property>
+           </layout>
+          </item>
+          <item row="1" column="2">
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
              <widget class="QPushButton" name="Play_Btn">
@@ -284,45 +401,7 @@
            </layout>
           </item>
           <item row="0" column="3">
-           <layout class="QGridLayout" name="renderer_layout" rowstretch="0" columnstretch="0">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMinimumSize</enum>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-           </layout>
-          </item>
-          <item row="0" column="2">
-           <layout class="QGridLayout" name="gridLayout_4" rowstretch="0" columnstretch="0">
-            <property name="topMargin">
-             <number>12</number>
-            </property>
-            <property name="rightMargin">
-             <number>12</number>
-            </property>
-            <property name="bottomMargin">
-             <number>12</number>
-            </property>
-            <property name="spacing">
-             <number>12</number>
-            </property>
-           </layout>
-          </item>
-          <item row="0" column="1">
-           <spacer name="horizontalSpacer_3">
+           <spacer name="horizontalSpacer_4">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -334,8 +413,8 @@
             </property>
            </spacer>
           </item>
-          <item row="0" column="4">
-           <spacer name="horizontalSpacer_4">
+          <item row="0" column="1">
+           <spacer name="horizontalSpacer_3">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
@@ -362,101 +441,6 @@
           </item>
          </layout>
         </item>
-        <item row="1" column="0" colspan="2">
-         <layout class="QGridLayout" name="chart_grid_layout">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMinimumSize</enum>
-          </property>
-         </layout>
-        </item>
-        <item row="0" column="0">
-         <layout class="QVBoxLayout" name="date_time_vertical_layout">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMinimumSize</enum>
-          </property>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout"/>
-          </item>
-          <item>
-           <widget class="QComboBox" name="drive_cbx">
-            <property name="currentText">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QPushButton" name="select_folder_btn">
-              <property name="text">
-               <string>Select Folder</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="search_btn">
-              <property name="text">
-               <string>Search</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-          <item>
-           <widget class="QCalendarWidget" name="calendar">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>200</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>500</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="gridVisible">
-             <bool>true</bool>
-            </property>
-            <property name="horizontalHeaderFormat">
-             <enum>QCalendarWidget::SingleLetterDayNames</enum>
-            </property>
-            <property name="verticalHeaderFormat">
-             <enum>QCalendarWidget::NoVerticalHeader</enum>
-            </property>
-            <property name="navigationBarVisible">
-             <bool>true</bool>
-            </property>
-            <property name="dateEditEnabled">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
        </layout>
       </widget>
      </widget>
@@ -468,7 +452,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1191</width>
+     <width>1315</width>
      <height>21</height>
     </rect>
    </property>
