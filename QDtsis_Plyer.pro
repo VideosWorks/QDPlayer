@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui charts
+QT       += core gui charts multimediawidgets
 CONFIG +=qwt
  QMAKE_CXXFLAGS_WARN_OFF -= -Wunused-parameter
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

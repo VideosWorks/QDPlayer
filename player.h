@@ -117,6 +117,20 @@ private slots:
     void on_Stop_Btn_clicked();
     void on_Back_Btn_clicked();
     void on_Forward_Btn_clicked();
+    void on_fast_speed_btn_clicked();
+    void on_slow_play_button_clicked();
+
+    void on_ch1_radio_btn_clicked();
+
+    void on_ch2_radio_btn_clicked();
+
+    void on_ch3_radio_btn_clicked();
+
+    void on_ch3_radio_btn_2_clicked();
+
+    void on_Pause_btn_clicked();
+
+    void on_mute_chckbx_stateChanged(int arg1);
 
 signals:
 private:

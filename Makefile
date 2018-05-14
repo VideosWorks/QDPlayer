@@ -231,9 +231,12 @@ Makefile: QDtsis_Plyer.pro C:/Qt/Qt5.10.1/5.10.1/mingw53_32/mkspecs/win32-g++/qm
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/libEGLd.prl \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/libGLESv2d.prl \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Charts.prl \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5MultimediaWidgets.prl \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Svg.prl \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Widgets.prl \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Multimedia.prl \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Gui.prl \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Network.prl \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile QDtsis_Plyer.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -406,9 +409,12 @@ C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/qtmaind.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/libEGLd.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/libGLESv2d.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Charts.prl:
+C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5MultimediaWidgets.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Svg.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Widgets.prl:
+C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Multimedia.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Gui.prl:
+C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Network.prl:
 C:/Qt/Qt5.10.1/5.10.1/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile QDtsis_Plyer.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
