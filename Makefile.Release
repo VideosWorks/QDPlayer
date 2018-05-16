@@ -1292,7 +1292,6 @@ release/player.o: player.cpp player.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QFrame \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \

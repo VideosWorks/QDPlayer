@@ -125,6 +125,7 @@ static double current_space=600000;
 Plot::Plot( QWidget *parent ):
     QwtPlot( parent )
 {
+  current_space=600000;
     zoomout_cnt=0;
     Carve.setStyle(QwtPlotCurve::Lines);
     Carve.setPen( Qt::white, 2),
@@ -252,50 +253,50 @@ void Plot::paint(QDateTime date1,QDateTime date2,int point,int camera)
     if(point==1)
     {
 
-        rec_curve1.setPen( Qt::blue, 20),
+        rec_curve1.setPen( Qt::blue, 10),
                 rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve2.setPen( Qt::blue, 20),
+        rec_curve2.setPen( Qt::blue, 10),
                 rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve3.setPen( Qt::blue, 20),
+        rec_curve3.setPen( Qt::blue, 10),
                 rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve4.setPen( Qt::blue, 20),
+        rec_curve4.setPen( Qt::blue, 10),
                 rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
 
     }
     if(point==2)
     {
 
-        rec_curve1.setPen( Qt::red, 20),
+        rec_curve1.setPen( Qt::red, 10),
                 rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve2.setPen( Qt::red, 20),
+        rec_curve2.setPen( Qt::red, 10),
                 rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve3.setPen( Qt::red, 20),
+        rec_curve3.setPen( Qt::red, 10),
                 rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve4.setPen( Qt::red, 20),
+        rec_curve4.setPen( Qt::red, 10),
                 rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     }
     if(point==3)
     {
 
-        rec_curve1.setPen( Qt::yellow, 20),
+        rec_curve1.setPen( Qt::yellow, 10),
                 rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve2.setPen( Qt::yellow, 20),
+        rec_curve2.setPen( Qt::yellow, 10),
                 rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve3.setPen( Qt::yellow, 20),
+        rec_curve3.setPen( Qt::yellow, 10),
                 rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve4.setPen( Qt::yellow, 20),
+        rec_curve4.setPen( Qt::yellow, 10),
                 rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     }
     if(point==4)
     {
 
-        rec_curve1.setPen( Qt::green, 20),
+        rec_curve1.setPen( Qt::green, 10),
                 rec_curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve2.setPen( Qt::green, 20),
+        rec_curve2.setPen( Qt::green, 10),
                 rec_curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve3.setPen( Qt::green, 20),
+        rec_curve3.setPen( Qt::green, 10),
                 rec_curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
-        rec_curve4.setPen( Qt::green, 20),
+        rec_curve4.setPen( Qt::green, 10),
                 rec_curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     }
     if(camera==1)
@@ -341,28 +342,28 @@ void Plot::first_paint(QDateTime date1,QDateTime date2,int point)
     points << QPointF( d1, point ) << QPointF( d2, point );
     if(point==1)
     {
-        Curve1.setPen( Qt::lightGray, 20),
+        Curve1.setPen( Qt::lightGray, 10),
                 Curve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
         Curve1.setSamples( points );
         Curve1.attach(this);
     }
     if(point==2)
     {
-        Curve2.setPen( Qt::lightGray, 20),
+        Curve2.setPen( Qt::lightGray, 10),
                 Curve2.setRenderHint( QwtPlotItem::RenderAntialiased, true );
         Curve2.setSamples( points );
         Curve2.attach(this);
     }
     if(point==3)
     {
-        Curve3.setPen( Qt::lightGray, 20),
+        Curve3.setPen( Qt::lightGray, 10),
                 Curve3.setRenderHint( QwtPlotItem::RenderAntialiased, true );
         Curve3.setSamples( points );
         Curve3.attach(this);
     }
     if(point==4)
     {
-        Curve4.setPen( Qt::lightGray, 20),
+        Curve4.setPen( Qt::lightGray, 10),
                 Curve4.setRenderHint( QwtPlotItem::RenderAntialiased, true );
         Curve4.setSamples( points );
         Curve4.attach(this);

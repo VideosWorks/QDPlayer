@@ -93,7 +93,8 @@ public:
     void find_path(QDate date);
     void clik();
     void mousePressEvent(QMouseEvent *event);
-
+    void resizeEvent(QResizeEvent* event);
+     QRect        m_WidgetRect;
 
     // Values  and Widgets
     QByteArray blob;
@@ -132,6 +133,14 @@ private slots:
     void on_Pause_btn_clicked();
 
     void on_mute_chckbx_stateChanged(int arg1);
+
+    void on_one_screen_btn_clicked();
+
+    void on_two_screen_btn_clicked();
+
+    void on_four_screen_btn_clicked();
+
+    void on_full_screen_btn_clicked();
 
 signals:
 private:
