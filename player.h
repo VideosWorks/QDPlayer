@@ -6,7 +6,7 @@
 #include<QChart>
 #include<QChartView>
 #include<QtAV>
-
+#include <QGridLayout>
 class  Settings;
 namespace Ui {
 class Player;
@@ -107,6 +107,7 @@ public:
     QtAV::VideoOutput *m_renderer3;
     QtAV::VideoOutput *m_renderer4;
     QtAV::AVPlayer *m_player;
+     QGridLayout *lay;
     int m_unit;
 
 protected:
@@ -136,11 +137,14 @@ private slots:
 
     void on_one_screen_btn_clicked();
 
-    void on_two_screen_btn_clicked();
 
     void on_four_screen_btn_clicked();
 
     void on_full_screen_btn_clicked();
+
+
+
+    void on_twoscreen_btn_clicked();
 
 signals:
 private:

@@ -51,6 +51,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QGridLayout *video_grid_layout;
     QGridLayout *renderer_layout;
+    QWidget *video_widget;
     QHBoxLayout *horizontalLayout_5;
     QPushButton *Play_Btn;
     QPushButton *Pause_btn;
@@ -60,7 +61,7 @@ public:
     QPushButton *slow_play_button;
     QPushButton *fast_speed_btn;
     QPushButton *one_screen_btn;
-    QPushButton *two_screen_btn;
+    QPushButton *twoscreen_btn;
     QPushButton *four_screen_btn;
     QPushButton *full_screen_btn;
     QCheckBox *mute_chckbx;
@@ -68,6 +69,7 @@ public:
     QRadioButton *ch2_radio_btn;
     QRadioButton *ch3_radio_btn;
     QRadioButton *ch3_radio_btn_2;
+    QSpacerItem *horizontalSpacer;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -82,6 +84,7 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Player->sizePolicy().hasHeightForWidth());
         Player->setSizePolicy(sizePolicy);
+        Player->setMinimumSize(QSize(1100, 600));
         Player->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 " border: 1px solid;\n"
@@ -159,7 +162,7 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(calendar->sizePolicy().hasHeightForWidth());
         calendar->setSizePolicy(sizePolicy1);
-        calendar->setMinimumSize(QSize(150, 165));
+        calendar->setMinimumSize(QSize(170, 165));
         calendar->setMaximumSize(QSize(200, 165));
         calendar->setStyleSheet(QStringLiteral(""));
         calendar->setGridVisible(true);
@@ -187,6 +190,11 @@ public:
         renderer_layout->setObjectName(QStringLiteral("renderer_layout"));
         renderer_layout->setSizeConstraint(QLayout::SetMinimumSize);
         renderer_layout->setContentsMargins(0, 0, 0, 0);
+        video_widget = new QWidget(local_tab);
+        video_widget->setObjectName(QStringLiteral("video_widget"));
+
+        renderer_layout->addWidget(video_widget, 0, 0, 1, 1);
+
 
         video_grid_layout->addLayout(renderer_layout, 0, 0, 1, 1);
 
@@ -253,26 +261,26 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(one_screen_btn->sizePolicy().hasHeightForWidth());
         one_screen_btn->setSizePolicy(sizePolicy2);
-        one_screen_btn->setMinimumSize(QSize(70, 30));
-        one_screen_btn->setMaximumSize(QSize(70, 30));
+        one_screen_btn->setMinimumSize(QSize(30, 30));
+        one_screen_btn->setMaximumSize(QSize(30, 30));
 
         horizontalLayout_5->addWidget(one_screen_btn);
 
-        two_screen_btn = new QPushButton(local_tab);
-        two_screen_btn->setObjectName(QStringLiteral("two_screen_btn"));
-        sizePolicy2.setHeightForWidth(two_screen_btn->sizePolicy().hasHeightForWidth());
-        two_screen_btn->setSizePolicy(sizePolicy2);
-        two_screen_btn->setMinimumSize(QSize(70, 30));
-        two_screen_btn->setMaximumSize(QSize(70, 30));
+        twoscreen_btn = new QPushButton(local_tab);
+        twoscreen_btn->setObjectName(QStringLiteral("twoscreen_btn"));
+        sizePolicy2.setHeightForWidth(twoscreen_btn->sizePolicy().hasHeightForWidth());
+        twoscreen_btn->setSizePolicy(sizePolicy2);
+        twoscreen_btn->setMinimumSize(QSize(30, 30));
+        twoscreen_btn->setMaximumSize(QSize(30, 30));
 
-        horizontalLayout_5->addWidget(two_screen_btn);
+        horizontalLayout_5->addWidget(twoscreen_btn);
 
         four_screen_btn = new QPushButton(local_tab);
         four_screen_btn->setObjectName(QStringLiteral("four_screen_btn"));
         sizePolicy2.setHeightForWidth(four_screen_btn->sizePolicy().hasHeightForWidth());
         four_screen_btn->setSizePolicy(sizePolicy2);
-        four_screen_btn->setMinimumSize(QSize(70, 30));
-        four_screen_btn->setMaximumSize(QSize(70, 30));
+        four_screen_btn->setMinimumSize(QSize(30, 30));
+        four_screen_btn->setMaximumSize(QSize(30, 30));
 
         horizontalLayout_5->addWidget(four_screen_btn);
 
@@ -280,8 +288,8 @@ public:
         full_screen_btn->setObjectName(QStringLiteral("full_screen_btn"));
         sizePolicy2.setHeightForWidth(full_screen_btn->sizePolicy().hasHeightForWidth());
         full_screen_btn->setSizePolicy(sizePolicy2);
-        full_screen_btn->setMinimumSize(QSize(72, 30));
-        full_screen_btn->setMaximumSize(QSize(72, 30));
+        full_screen_btn->setMinimumSize(QSize(30, 30));
+        full_screen_btn->setMaximumSize(QSize(30, 30));
 
         horizontalLayout_5->addWidget(full_screen_btn);
 
@@ -310,6 +318,10 @@ public:
         ch3_radio_btn_2->setObjectName(QStringLiteral("ch3_radio_btn_2"));
 
         horizontalLayout_5->addWidget(ch3_radio_btn_2);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer);
 
 
         video_grid_layout->addLayout(horizontalLayout_5, 1, 0, 1, 1);
@@ -354,10 +366,10 @@ public:
         Forward_Btn->setText(QString());
         slow_play_button->setText(QString());
         fast_speed_btn->setText(QString());
-        one_screen_btn->setText(QApplication::translate("Player", "1 window", nullptr));
-        two_screen_btn->setText(QApplication::translate("Player", "2 window", nullptr));
-        four_screen_btn->setText(QApplication::translate("Player", "4 window", nullptr));
-        full_screen_btn->setText(QApplication::translate("Player", "Full Screen", nullptr));
+        one_screen_btn->setText(QString());
+        twoscreen_btn->setText(QString());
+        four_screen_btn->setText(QString());
+        full_screen_btn->setText(QString());
         mute_chckbx->setText(QApplication::translate("Player", "Mute/Unmute", nullptr));
         ch1_radio_btn->setText(QApplication::translate("Player", "Channel1", nullptr));
         ch2_radio_btn->setText(QApplication::translate("Player", "Channel2", nullptr));

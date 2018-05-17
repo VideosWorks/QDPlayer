@@ -161,29 +161,7 @@ Player::~Player()
 void Player::resizeEvent(QResizeEvent* event)
 {
 
-  qDebug()<< "this width  :"<< this->width();
-  qDebug()<<"this height  :"<< this->height();
-  qDebug()<<"renderer height :"<<m_renderer1->rendererHeight();
-  qDebug()<<"renderer width : " <<m_renderer1->rendererWidth();
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
 
-
-
-
-  qDebug()<<" sonra -------------------------------------------------------------------------";
-  qDebug()<<"renderer height :"<<m_renderer1->rendererHeight();
-  qDebug()<<"renderer width : " <<m_renderer1->rendererWidth();
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
 
 }
 static int clicked_state=0;
@@ -191,15 +169,6 @@ static int screen_mode =4;
 void Player::mousePressEvent(QMouseEvent *event)
 {
 
-
-
-
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
   lay->addWidget(m_renderer1->widget(), 0, 0);
   lay->addWidget(m_renderer2->widget(), 0, 1);
   lay->addWidget(m_renderer3->widget(), 1, 0);
@@ -276,14 +245,6 @@ void Player::mousePressEvent(QMouseEvent *event)
       clicked_state=0;
 
     }
-  qDebug()<<"-----------------------------------sonra";
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
-
 }
 
 void Player::check_drive()

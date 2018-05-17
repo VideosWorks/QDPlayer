@@ -376,6 +376,11 @@ debug/moc_player.cpp: C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QMainWi
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QUrl \
 		../QtAV-master/src/QtAV/SubtitleFilter.h \
 		../QtAV-master/src/QtAV/MediaIO.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		player.h \
 		debug/moc_predefs.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/bin/moc.exe
@@ -659,6 +664,11 @@ debug/moc_plot.cpp: C:/Qwt-6.1.3/include/qwt_plot.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QUrl \
 		../QtAV-master/src/QtAV/SubtitleFilter.h \
 		../QtAV-master/src/QtAV/MediaIO.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qwt-6.1.3/include/qwt_plot_curve.h \
 		C:/Qwt-6.1.3/include/qwt_plot_seriesitem.h \
 		C:/Qwt-6.1.3/include/qwt_scale_div.h \
@@ -963,6 +973,11 @@ debug/main.o: main.cpp player.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QUrl \
 		../QtAV-master/src/QtAV/SubtitleFilter.h \
 		../QtAV-master/src/QtAV/MediaIO.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QApplication \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qapplication.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -1261,6 +1276,11 @@ debug/player.o: player.cpp player.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QUrl \
 		../QtAV-master/src/QtAV/SubtitleFilter.h \
 		../QtAV-master/src/QtAV/MediaIO.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		ui_player.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QAction \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qaction.h \
@@ -1292,11 +1312,6 @@ debug/player.o: player.cpp player.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qtabbar.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qrubberband.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/qabstractitemmodel.h \
-		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
-		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
-		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHBoxLayout \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QHeaderView \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qheaderview.h \
@@ -1649,6 +1664,11 @@ debug/plot.o: plot.cpp plot.h \
 		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtCore/QUrl \
 		../QtAV-master/src/QtAV/SubtitleFilter.h \
 		../QtAV-master/src/QtAV/MediaIO.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/QGridLayout \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayout.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/Qt5.10.1/5.10.1/mingw53_32/include/QtWidgets/qboxlayout.h \
 		C:/Qwt-6.1.3/include/qwt_plot_curve.h \
 		C:/Qwt-6.1.3/include/qwt_plot_seriesitem.h \
 		C:/Qwt-6.1.3/include/qwt_scale_div.h \

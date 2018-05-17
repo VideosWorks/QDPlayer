@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_Player_t {
     QByteArrayData data[24];
-    char stringdata0[495];
+    char stringdata0[494];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -52,9 +52,9 @@ QT_MOC_LITERAL(17, 335, 20), // "on_Pause_btn_clicked"
 QT_MOC_LITERAL(18, 356, 27), // "on_mute_chckbx_stateChanged"
 QT_MOC_LITERAL(19, 384, 4), // "arg1"
 QT_MOC_LITERAL(20, 389, 25), // "on_one_screen_btn_clicked"
-QT_MOC_LITERAL(21, 415, 25), // "on_two_screen_btn_clicked"
-QT_MOC_LITERAL(22, 441, 26), // "on_four_screen_btn_clicked"
-QT_MOC_LITERAL(23, 468, 26) // "on_full_screen_btn_clicked"
+QT_MOC_LITERAL(21, 415, 26), // "on_four_screen_btn_clicked"
+QT_MOC_LITERAL(22, 442, 26), // "on_full_screen_btn_clicked"
+QT_MOC_LITERAL(23, 469, 24) // "on_twoscreen_btn_clicked"
 
     },
     "Player\0on_select_folder_btn_clicked\0"
@@ -69,9 +69,9 @@ QT_MOC_LITERAL(23, 468, 26) // "on_full_screen_btn_clicked"
     "on_ch3_radio_btn_2_clicked\0"
     "on_Pause_btn_clicked\0on_mute_chckbx_stateChanged\0"
     "arg1\0on_one_screen_btn_clicked\0"
-    "on_two_screen_btn_clicked\0"
     "on_four_screen_btn_clicked\0"
-    "on_full_screen_btn_clicked"
+    "on_full_screen_btn_clicked\0"
+    "on_twoscreen_btn_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -158,9 +158,9 @@ void Player::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 14: _t->on_Pause_btn_clicked(); break;
         case 15: _t->on_mute_chckbx_stateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 16: _t->on_one_screen_btn_clicked(); break;
-        case 17: _t->on_two_screen_btn_clicked(); break;
-        case 18: _t->on_four_screen_btn_clicked(); break;
-        case 19: _t->on_full_screen_btn_clicked(); break;
+        case 17: _t->on_four_screen_btn_clicked(); break;
+        case 18: _t->on_full_screen_btn_clicked(); break;
+        case 19: _t->on_twoscreen_btn_clicked(); break;
         default: ;
         }
     }
