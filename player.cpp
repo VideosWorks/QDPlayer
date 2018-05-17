@@ -24,6 +24,7 @@
 #include <cstdio>
 #include <cstring>
 #include <QVideoWidget>
+#include <QtAVWidgets>
 using namespace QtAV;
 using namespace std;
 
@@ -89,22 +90,22 @@ Player::Player(QWidget *parent) :
   m_unit = 1000;
   m_player = new AVPlayer(this);
   m_player->setSeekType(KeyFrameSeek);
-  m_renderer1 = new VideoOutput(this);
+  m_renderer1 = new VideoOutput(VideoRendererId_GLWidget2);
   if (!m_renderer1->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 1"));
       return;
     }
-  m_renderer2 = new VideoOutput(this);
+  m_renderer2 = new VideoOutput(VideoRendererId_GLWidget2);
   if (!m_renderer2->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 2"));
       return;
     }
-  m_renderer3 = new VideoOutput(this);
+  m_renderer3 = new VideoOutput(VideoRendererId_GLWidget2);
   if (!m_renderer3->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 3"));
       return;
     }
-  m_renderer4 = new VideoOutput(this);
+  m_renderer4 = new VideoOutput(VideoRendererId_GLWidget2);
   if (!m_renderer4->widget()) {
       QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 4"));
       return;
@@ -119,28 +120,6 @@ Player::Player(QWidget *parent) :
   //  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
   ui->renderer_layout->setSpacing(1);
   ui->renderer_layout->setMargin(1);
-
-  //      m_renderer1->widget()->resize(352,288);
-  //      m_renderer2->widget()->resize(352,288);
-  //      m_renderer3->widget()->resize(352,288);
-  //      m_renderer4->widget()->resize(352,288);
-  m_renderer1->widget()->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-  //      m_renderer1->widget()->setMinimumHeight(288);
-  //      m_renderer1->widget()->setMaximumHeight(288);
-  //      m_renderer1->widget()->setMinimumWidth(352);
-  //      m_renderer1->widget()->setMaximumWidth(352);
-  //      m_renderer2->widget()->setMinimumHeight(288);
-  //      m_renderer2->widget()->setMaximumHeight(288);
-  //      m_renderer2->widget()->setMinimumWidth(352);
-  //      m_renderer2->widget()->setMaximumWidth(352);
-  //      m_renderer3->widget()->setMinimumHeight(288);
-  //      m_renderer3->widget()->setMaximumHeight(288);
-  //      m_renderer3->widget()->setMinimumWidth(352);
-  //      m_renderer3->widget()->setMaximumWidth(352);
-  //      m_renderer4->widget()->setMinimumHeight(288);
-  //      m_renderer4->widget()->setMaximumHeight(288);
-  //      m_renderer4->widget()->setMinimumWidth(352);
-  //      m_renderer4->widget()->setMaximumWidth(352);
 
    QGridLayout *lay = new QGridLayout;
   ui->video_widget->setLayout(lay);
@@ -161,29 +140,7 @@ Player::~Player()
 void Player::resizeEvent(QResizeEvent* event)
 {
 
-  qDebug()<< "this width  :"<< this->width();
-  qDebug()<<"this height  :"<< this->height();
-  qDebug()<<"renderer height :"<<m_renderer1->rendererHeight();
-  qDebug()<<"renderer width : " <<m_renderer1->rendererWidth();
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
 
-
-
-
-  qDebug()<<" sonra -------------------------------------------------------------------------";
-  qDebug()<<"renderer height :"<<m_renderer1->rendererHeight();
-  qDebug()<<"renderer width : " <<m_renderer1->rendererWidth();
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
 
 }
 static int clicked_state=0;
@@ -191,19 +148,10 @@ static int screen_mode =4;
 void Player::mousePressEvent(QMouseEvent *event)
 {
 
-
-
-
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
-  lay->addWidget(m_renderer1->widget(), 0, 0);
-  lay->addWidget(m_renderer2->widget(), 0, 1);
-  lay->addWidget(m_renderer3->widget(), 1, 0);
-  lay->addWidget(m_renderer4->widget(), 1, 1);
+//  lay->addWidget(m_renderer1->widget(), 0, 0);
+//  lay->addWidget(m_renderer2->widget(), 0, 1);
+//  lay->addWidget(m_renderer3->widget(), 1, 0);
+//  lay->addWidget(m_renderer4->widget(), 1, 1);
   int a =-1;
   QWidget * const widget = childAt(event->pos());
   qDebug() << "child widget" << widget;
@@ -276,14 +224,6 @@ void Player::mousePressEvent(QMouseEvent *event)
       clicked_state=0;
 
     }
-  qDebug()<<"-----------------------------------sonra";
-  qDebug()<< " widget height : " << m_renderer1->widget()->height();
-  qDebug() << "widget width   :" << m_renderer1->widget()->width();
-  qDebug()<< " frame  height  : " << m_renderer1->videoFrameSize().height();
-  qDebug() << " frame width : "<< m_renderer1 ->videoFrameSize().width();
-  qDebug()<< " rect size :"<< m_renderer1->videoRect().height();
-  qDebug()<<" rect size width : "<< m_renderer1->videoRect().width();
-
 }
 
 void Player::check_drive()
@@ -906,14 +846,24 @@ void Player::on_four_screen_btn_clicked()
   update();
 
 }
-int full_screen_state=0;
-QWidget * m_pParent;
-bool maxMode;
-Qt::WindowFlags m_enOrigWindowFlags;
-QSize m_pSize;
+static int full_btn_state=0;
+
 void Player::on_full_screen_btn_clicked()
 {
- ui->video_widget->setParent(0);
- ui->video_widget->showFullScreen();
+  if(full_btn_state==0)
+    {
+      this->hide();
+      ui->video_widget->setParent(0);
+      ui->video_widget->showFullScreen();
+      full_btn_state=1;
+
+    }
+  else
+    {
+      ui->video_widget->setParent(this);
+      this->show();
+      full_btn_state=0;
+    }
+
 
 }
