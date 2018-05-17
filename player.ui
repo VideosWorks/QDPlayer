@@ -81,13 +81,6 @@
         <string>Local Disk</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_8">
-        <item row="1" column="0" colspan="2">
-         <layout class="QGridLayout" name="chart_grid_layout">
-          <property name="sizeConstraint">
-           <enum>QLayout::SetMinimumSize</enum>
-          </property>
-         </layout>
-        </item>
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="date_time_vertical_layout">
           <property name="sizeConstraint">
@@ -176,6 +169,13 @@
           </item>
          </layout>
         </item>
+        <item row="1" column="0" colspan="2">
+         <layout class="QGridLayout" name="chart_grid_layout">
+          <property name="sizeConstraint">
+           <enum>QLayout::SetMinimumSize</enum>
+          </property>
+         </layout>
+        </item>
         <item row="0" column="1">
          <layout class="QGridLayout" name="video_grid_layout">
           <property name="sizeConstraint">
@@ -184,31 +184,6 @@
           <property name="rightMargin">
            <number>0</number>
           </property>
-          <item row="0" column="0">
-           <layout class="QGridLayout" name="renderer_layout" rowstretch="0" columnstretch="0">
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMinimumSize</enum>
-            </property>
-            <property name="leftMargin">
-             <number>0</number>
-            </property>
-            <property name="topMargin">
-             <number>0</number>
-            </property>
-            <property name="rightMargin">
-             <number>0</number>
-            </property>
-            <property name="bottomMargin">
-             <number>0</number>
-            </property>
-            <property name="spacing">
-             <number>0</number>
-            </property>
-            <item row="0" column="0">
-             <widget class="QWidget" name="video_widget" native="true"/>
-            </item>
-           </layout>
-          </item>
           <item row="1" column="0">
            <layout class="QHBoxLayout" name="horizontalLayout_5">
             <item>
@@ -506,6 +481,43 @@
                </size>
               </property>
              </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <layout class="QGridLayout" name="renderer_layout" rowstretch="0" columnstretch="0">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetMinimumSize</enum>
+            </property>
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item row="0" column="0">
+             <widget class="QWidget" name="video_widget" native="true">
+              <widget class="QWidget" name="gridLayoutWidget">
+               <property name="geometry">
+                <rect>
+                 <x>100</x>
+                 <y>180</y>
+                 <width>160</width>
+                 <height>80</height>
+                </rect>
+               </property>
+               <layout class="QGridLayout" name="slay"/>
+              </widget>
+             </widget>
             </item>
            </layout>
           </item>

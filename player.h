@@ -146,6 +146,9 @@ private slots:
 
     void on_twoscreen_btn_clicked();
 
+
+
+
 signals:
 private:
     Ui::Player *ui;
