@@ -25,6 +25,8 @@
 #include <cstring>
 #include <QVideoWidget>
 #include <QtAVWidgets>
+#include "wid_win.h"
+
 using namespace QtAV;
 using namespace std;
 
@@ -39,14 +41,6 @@ Player::Player(QWidget *parent) :
                        "QTabBar::tab:selected {width:500;height:20;margin : 1;radius:15; color:white;font:bold;font-size:8pt;background-color:gray}";
     ui->tabWidget->setStyleSheet(tabStyle);
     ui->calendar->setStyleSheet("selection-background-color: blue;   selection-color: white ");
-    // ui->pushButton->setStyleSheet("background-image:url(video_bk.jpg)");
-    //  ui->pushButton_2->setStyleSheet("background-image:url(video_bk.jpg)");
-    //  ui->pushButton_3->setStyleSheet("background-image:url(video_bk.jpg)");
-    //  ui->pushButton_4->setStyleSheet("background-image:url(video_bk.jpg)");
-    //  ui->pushButton->setVisible(false);
-    //  ui->pushButton_2->setVisible(false);
-    //  ui->pushButton_3->setVisible(false);
-    //  ui->pushButton_4->setVisible(false);
 
     ui->Play_Btn->setStyleSheet("background-image:url(play.jpg) 0 0 0 0 stretch stretch ;border-width: 0px;");
     ui->Play_Btn->setToolTip("Normal Play 1x");
@@ -110,24 +104,23 @@ Player::Player(QWidget *parent) :
         QMessageBox::warning(0, QString::fromLatin1("QtAV error"), tr("Can not create video renderer 4"));
         return;
     }
-    m_player->addVideoRenderer(m_renderer1, 0);
+  //  m_player->addVideoRenderer(m_renderer1, 0);
     //  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
-    m_player->addVideoRenderer(m_renderer2, 1);
-    //  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
-    m_player->addVideoRenderer(m_renderer3, 2);
-    //  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
-    m_player->addVideoRenderer(m_renderer4, 3);
-    //  m_player->renderer()->setOutAspectRatioMode(QtAV::VideoRenderer::OutAspectRatioMode::RendererAspectRatio);
-    ui->renderer_layout->setSpacing(1);
-    ui->renderer_layout->setMargin(1);
-
-
+//    m_player->addVideoRenderer(m_renderer2, 1);
+//    m_player->addVideoRenderer(m_renderer3, 2);
+//    m_player->addVideoRenderer(m_renderer4, 3);
+    ui->slay->setSpacing(1);
+    ui->slay->setMargin(1);
     ui->video_widget->setLayout(ui->slay);
 
-    ui->slay->addWidget(m_renderer1->widget(), 0, 0);
-    ui->slay->addWidget(m_renderer2->widget(), 0, 1);
-    ui->slay->addWidget(m_renderer3->widget(), 1, 0);
-    ui->slay->addWidget(m_renderer4->widget(), 1, 1);
+      cx = new wid_win();
+
+//    ui->slay->addWidget(m_renderer1->widget(), 0, 0);
+//    ui->slay->addWidget(m_renderer2->widget(), 0, 1);
+//    ui->slay->addWidget(m_renderer3->widget(), 1, 0);
+//    ui->slay->addWidget(m_renderer4->widget(), 1, 1);
+   ui->slay->addWidget(cx->widgt);
+
 
 
 }
@@ -137,11 +130,14 @@ Player::~Player()
     delete ui;
 }
 static int full_btn_state=0;
+
 void Player::resizeEvent(QResizeEvent* event)
 {
 
-
-
+}
+void Player::on_video_widget_clicked()
+{
+    qDebug()<<"aaaa";
 }
 static int clicked_state=0;
 static int screen_mode =4;
@@ -163,12 +159,10 @@ void Player::mousePressEvent(QMouseEvent *event)
         qDebug() << "layout index" << index;
 
     }
-
     if(clicked_state==0)
     {
         if(a==0)
         {
-
             m_renderer1->widget()->setVisible(true);
             m_renderer2->widget()->setVisible(false);
             m_renderer3->widget()->setVisible(false);
@@ -255,7 +249,6 @@ void Player::check_drive()
     }
 
 }
-
 
 void Player::on_select_folder_btn_clicked()
 {
@@ -811,10 +804,10 @@ void Player::on_one_screen_btn_clicked()
     m_renderer3->widget()->setVisible(false);
     m_renderer4->widget()->setVisible(false);
     m_renderer1->widget()->setVisible(true);
-    lay->addWidget(m_renderer1->widget(),0,0);
-    lay->addWidget(m_renderer2->widget(),0,1);
-    lay->addWidget(m_renderer3->widget(),1,0);
-    lay->addWidget(m_renderer4->widget(),1,1);
+    ui->slay->addWidget(m_renderer1->widget(),0,0);
+    ui->slay->addWidget(m_renderer2->widget(),0,1);
+    ui->slay->addWidget(m_renderer3->widget(),1,0);
+    ui->slay->addWidget(m_renderer4->widget(),1,1);
     screen_mode=1;
     update();
 }
@@ -831,8 +824,8 @@ void Player::on_twoscreen_btn_clicked()
     m_renderer4->widget()->setVisible(false);
     m_renderer1->widget()->setVisible(true);
     m_renderer2->widget()->setVisible(true);
-    lay->addWidget(m_renderer1->widget(),0,0);
-    lay->addWidget(m_renderer2->widget(),0,1);
+    ui->slay->addWidget(m_renderer1->widget(),0,0);
+    ui->slay->addWidget(m_renderer2->widget(),0,1);
     screen_mode=2;
 
     update();
@@ -849,10 +842,10 @@ void Player::on_four_screen_btn_clicked()
     m_renderer2->widget()->setVisible(true);
     m_renderer3->widget()->setVisible(true);
     m_renderer4->widget()->setVisible(true);
-    lay->addWidget(m_renderer1->widget(),0,0);
-    lay->addWidget(m_renderer2->widget(),0,1);
-    lay->addWidget(m_renderer3->widget(),1,0);
-    lay->addWidget(m_renderer4->widget(),1,1);
+    ui->slay->addWidget(m_renderer1->widget(),0,0);
+    ui->slay->addWidget(m_renderer2->widget(),0,1);
+    ui->slay->addWidget(m_renderer3->widget(),1,0);
+    ui->slay->addWidget(m_renderer4->widget(),1,1);
     screen_mode=4;
 
     update();
@@ -865,19 +858,17 @@ void Player::on_full_screen_btn_clicked()
     if(full_btn_state==0)
     {
         this->hide();
-        ui->video_widget->setParent(0);
-        ui->video_widget->showFullScreen();
+        cx->setParent(0);
+        cx->show();
         full_btn_state=1;
 
     }
     else
     {
-        ui->video_widget->setParent(this);
+        cx->widgt->setParent(this);
         this->show();
         full_btn_state=0;
     }
-
-
 }
 
 

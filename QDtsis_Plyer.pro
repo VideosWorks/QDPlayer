@@ -71,11 +71,13 @@ CONFIG(debug, debug|release) {
 
 SOURCES += main.cpp\
         player.cpp \
-    plot.cpp
+    plot.cpp \
+    wid_win.cpp
 
 HEADERS  += player.h \
     plot.h \
-    settings.h
+    settings.h \
+    wid_win.h
 
 FORMS    += player.ui
 

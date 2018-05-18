@@ -7,6 +7,7 @@
 #include<QChartView>
 #include<QtAV>
 #include <QGridLayout>
+#include "wid_win.h"
 class  Settings;
 namespace Ui {
 class Player;
@@ -94,6 +95,7 @@ public:
     void clik();
     void mousePressEvent(QMouseEvent *event);
     void resizeEvent(QResizeEvent* event);
+
      QRect        m_WidgetRect;
 
     // Values  and Widgets
@@ -111,6 +113,7 @@ public:
     int m_unit;
 
 protected:
+
 private slots:
     void on_select_folder_btn_clicked();
     void  check_drive();
@@ -137,15 +140,12 @@ private slots:
 
     void on_one_screen_btn_clicked();
 
-
     void on_four_screen_btn_clicked();
 
     void on_full_screen_btn_clicked();
 
-
-
     void on_twoscreen_btn_clicked();
-
+    void on_video_widget_clicked();
 
 
 
@@ -153,6 +153,8 @@ signals:
 private:
     Ui::Player *ui;
     Plot *d_plot;
+    wid_win *cx;
+
 
 };
 
