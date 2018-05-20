@@ -12,7 +12,7 @@ class  Settings;
 namespace Ui {
 class Player;
 }
-
+class wid_win;
 class Plot;
 class Player : public QMainWindow
 {
@@ -104,16 +104,17 @@ public:
     QStringList drive_list;
     QMessageBox message_box;
     T_RDBFILE t1;
-    QtAV::VideoOutput *m_renderer1;
-    QtAV::VideoOutput *m_renderer2;
-    QtAV::VideoOutput *m_renderer3;
-    QtAV::VideoOutput *m_renderer4;
-    QtAV::AVPlayer *m_player;
-     QGridLayout *lay;
+
     int m_unit;
+    bool isMaximized;
 
 protected:
 
+
+
+public slots:
+
+    void exitFullScreen();
 private slots:
     void on_select_folder_btn_clicked();
     void  check_drive();
@@ -148,12 +149,13 @@ private slots:
     void on_video_widget_clicked();
 
 
-
 signals:
+
 private:
     Ui::Player *ui;
     Plot *d_plot;
     wid_win *cx;
+
 
 
 };

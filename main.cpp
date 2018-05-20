@@ -2,13 +2,16 @@
 #include <QApplication>
 #include <plot.h>
 #include "player.h"
+#include "wid_win.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Player w;
     Plot pl;
     pl.set_player(&w);
-    w.resize(1100,800);
-    w.show();
+    wid_win cx;
+    cx.set_player(&w);
+
+    w.showMaximized();
     return a.exec();
 }

@@ -3,7 +3,7 @@
 
 #include <qwt_plot.h>
 #include <QDateTime>
-#include <player.h>
+#include "player.h"
 #include <qwt_plot_curve.h>
 class Settings;
 class Player;

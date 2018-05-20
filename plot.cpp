@@ -177,7 +177,7 @@ Plot::Plot( QWidget *parent ):
     QwtPlotPicker* zoomer = new MyZoomer( canvas() );
     QDate dt2=QDate::currentDate();
     current_x=QwtDate::toDouble(convertdate(dt2,720));
-    Stick(convertdate(dt2,720));
+    Stick(convertdate(dt2,1359));
 
 
 }

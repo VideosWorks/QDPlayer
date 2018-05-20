@@ -18,9 +18,17 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>1100</width>
+    <width>800</width>
     <height>600</height>
    </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Calibri</family>
+    <pointsize>16</pointsize>
+    <weight>75</weight>
+    <bold>true</bold>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Basket Player v0.1</string>
@@ -124,14 +132,14 @@
             </property>
             <property name="minimumSize">
              <size>
-              <width>170</width>
-              <height>165</height>
+              <width>300</width>
+              <height>200</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
-              <height>165</height>
+              <width>300</width>
+              <height>200</height>
              </size>
             </property>
             <property name="styleSheet">
@@ -504,21 +512,6 @@
             <property name="spacing">
              <number>0</number>
             </property>
-            <item row="0" column="0">
-             <widget class="QWidget" name="video_widget" native="true">
-              <widget class="QWidget" name="gridLayoutWidget">
-               <property name="geometry">
-                <rect>
-                 <x>100</x>
-                 <y>180</y>
-                 <width>160</width>
-                 <height>80</height>
-                </rect>
-               </property>
-               <layout class="QGridLayout" name="slay"/>
-              </widget>
-             </widget>
-            </item>
            </layout>
           </item>
          </layout>
