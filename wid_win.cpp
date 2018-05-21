@@ -25,18 +25,18 @@ wid_win::wid_win()
     m_player->addVideoRenderer(m_renderer4, 3);
     lay = new QGridLayout;
 
-    lay->setSpacing(1);
-    lay->setMargin(1);
+    lay->setSpacing(2);
+    lay->setMargin(2);
 
     //  widgt->setLayout(lay);
     setLayout(lay);
 
 
-    lay->addWidget(m_renderer1->widget(),0,0);
-    lay->addWidget(m_renderer2->widget(),0,1);
-    lay->addWidget(m_renderer3->widget(),1,0);
-    lay->addWidget(m_renderer4->widget(),1,1);
+    lay->addWidget(m_renderer1->widget(),0,1);
+    lay->addWidget(m_renderer2->widget(),0,2);
 
+    lay->addWidget(m_renderer3->widget(),1,1);
+    lay->addWidget(m_renderer4->widget(),1,2);
 
 
 
@@ -112,6 +112,8 @@ void wid_win::mousePressEvent(QMouseEvent *event)
         }
         clicked_state=0;
     }
+    play->reSize();
+
 }
 
 void wid_win::keyPressEvent(QKeyEvent* event)
@@ -121,7 +123,7 @@ void wid_win::keyPressEvent(QKeyEvent* event)
     if(event->key() == Qt::Key_Escape)
     {
         qDebug()<<"escape ";
-
+        play->reSize();
         play->exitFullScreen();
 
 

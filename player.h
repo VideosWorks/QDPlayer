@@ -94,7 +94,7 @@ public:
     void find_path(QDate date);
     void clik();
     void mousePressEvent(QMouseEvent *event);
-    void resizeEvent(QResizeEvent* event);
+    void reSize();
 
      QRect        m_WidgetRect;
 
@@ -146,7 +146,7 @@ private slots:
     void on_full_screen_btn_clicked();
 
     void on_twoscreen_btn_clicked();
-    void on_video_widget_clicked();
+
 
 
 signals:

@@ -62,6 +62,8 @@ public:
     QPushButton *twoscreen_btn;
     QPushButton *four_screen_btn;
     QPushButton *full_screen_btn;
+    QPushButton *snapshot_btn;
+    QPushButton *video_record_btn;
     QCheckBox *mute_chckbx;
     QRadioButton *ch1_radio_btn;
     QRadioButton *ch2_radio_btn;
@@ -69,6 +71,9 @@ public:
     QRadioButton *ch3_radio_btn_2;
     QSpacerItem *horizontalSpacer;
     QGridLayout *renderer_layout;
+    QPushButton *pushButton;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_3;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -285,6 +290,26 @@ public:
 
         horizontalLayout_5->addWidget(full_screen_btn);
 
+        snapshot_btn = new QPushButton(local_tab);
+        snapshot_btn->setObjectName(QStringLiteral("snapshot_btn"));
+        sizePolicy2.setHeightForWidth(snapshot_btn->sizePolicy().hasHeightForWidth());
+        snapshot_btn->setSizePolicy(sizePolicy2);
+        snapshot_btn->setMinimumSize(QSize(30, 30));
+        snapshot_btn->setMaximumSize(QSize(30, 30));
+        snapshot_btn->setIconSize(QSize(16, 16));
+
+        horizontalLayout_5->addWidget(snapshot_btn);
+
+        video_record_btn = new QPushButton(local_tab);
+        video_record_btn->setObjectName(QStringLiteral("video_record_btn"));
+        sizePolicy2.setHeightForWidth(video_record_btn->sizePolicy().hasHeightForWidth());
+        video_record_btn->setSizePolicy(sizePolicy2);
+        video_record_btn->setMinimumSize(QSize(30, 30));
+        video_record_btn->setMaximumSize(QSize(30, 30));
+        video_record_btn->setIconSize(QSize(24, 24));
+
+        horizontalLayout_5->addWidget(video_record_btn);
+
         mute_chckbx = new QCheckBox(local_tab);
         mute_chckbx->setObjectName(QStringLiteral("mute_chckbx"));
         mute_chckbx->setChecked(true);
@@ -323,6 +348,24 @@ public:
         renderer_layout->setObjectName(QStringLiteral("renderer_layout"));
         renderer_layout->setSizeConstraint(QLayout::SetMinimumSize);
         renderer_layout->setContentsMargins(0, 0, 0, 0);
+        pushButton = new QPushButton(local_tab);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(pushButton->sizePolicy().hasHeightForWidth());
+        pushButton->setSizePolicy(sizePolicy3);
+
+        renderer_layout->addWidget(pushButton, 0, 1, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        renderer_layout->addItem(horizontalSpacer_2, 0, 0, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Preferred, QSizePolicy::Minimum);
+
+        renderer_layout->addItem(horizontalSpacer_3, 0, 2, 1, 1);
+
 
         video_grid_layout->addLayout(renderer_layout, 0, 0, 1, 1);
 
@@ -370,11 +413,14 @@ public:
         twoscreen_btn->setText(QString());
         four_screen_btn->setText(QString());
         full_screen_btn->setText(QString());
+        snapshot_btn->setText(QString());
+        video_record_btn->setText(QString());
         mute_chckbx->setText(QApplication::translate("Player", "Mute/Unmute", nullptr));
         ch1_radio_btn->setText(QApplication::translate("Player", "Channel1", nullptr));
         ch2_radio_btn->setText(QApplication::translate("Player", "Channel2", nullptr));
         ch3_radio_btn->setText(QApplication::translate("Player", "Channel3", nullptr));
         ch3_radio_btn_2->setText(QApplication::translate("Player", "Channel4", nullptr));
+        pushButton->setText(QApplication::translate("Player", "PushButton", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(local_tab), QApplication::translate("Player", "Local Disk", nullptr));
     } // retranslateUi
 
