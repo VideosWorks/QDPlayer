@@ -101,6 +101,12 @@ Player::Player(QWidget *parent) :
 
   d_plot->set_player(this);
   cx->set_player(this);
+
+
+  connect(ui->snapshot_btn, SIGNAL(clicked()), SLOT(capture()));
+  connect(cx->m_player->videoCapture(0), SIGNAL(imageCaptured(QImage)), SLOT(updatePreview(QImage)));
+  connect(cx->m_player->videoCapture(0), SIGNAL(saved(QString)), SLOT(onCaptureSaved(QString)));
+  connect(cx->m_player->videoCapture(0), SIGNAL(failed()), SLOT(onCaptureError()));
 }
 
 Player::~Player()
@@ -790,4 +796,20 @@ void Player::exitFullScreen()
   cx->setParent(this);
   ui->renderer_layout->addWidget(cx);
   this->show();
+}
+void Player::capture()
+{
+    //m_player->captureVideo();
+    cx->m_player->videoCapture(2)->capture();
+
+}
+
+void Player::onCaptureSaved(const QString &path)
+{
+    setWindowTitle(tr("saved to: ") + path);
+}
+
+void Player::onCaptureError()
+{
+    QMessageBox::warning(0, QString::fromLatin1("QtAV video capture"), tr("Failed to capture video frame"));
 }

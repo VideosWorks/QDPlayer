@@ -8,6 +8,7 @@
 #include<QtAV>
 #include <QGridLayout>
 #include "wid_win.h"
+#include <QMediaRecorder>
 class  Settings;
 namespace Ui {
 class Player;
@@ -107,7 +108,7 @@ public:
 
     int m_unit;
     bool isMaximized;
-
+    QMediaRecorder *recorder;
 protected:
 
 
@@ -146,6 +147,10 @@ private slots:
     void on_full_screen_btn_clicked();
 
     void on_twoscreen_btn_clicked();
+    void capture();
+    void onCaptureSaved(const QString& path);
+    void onCaptureError();
+
 
 
 

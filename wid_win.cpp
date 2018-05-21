@@ -13,6 +13,7 @@ wid_win::wid_win()
 
 
     m_renderer1 = new VideoOutput(VideoRendererId_GLWidget2);
+
     m_renderer2 = new VideoOutput(VideoRendererId_GLWidget2);
     m_renderer3 = new VideoOutput(VideoRendererId_GLWidget2);
     m_renderer4 = new VideoOutput(VideoRendererId_GLWidget2);
