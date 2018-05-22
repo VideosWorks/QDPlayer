@@ -152,8 +152,6 @@ private slots:
     void onCaptureError();
 
 
-
-
 signals:
 
 private:

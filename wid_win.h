@@ -14,7 +14,7 @@ class wid_win:public QWidget
 
 public:
     wid_win();
-
+   int a;
     QGridLayout *lay;
     QWidget *widgt;
     QPushButton *btn;
@@ -30,6 +30,8 @@ public:
     int full_btn_state=0;
     void  keyPressEvent(QKeyEvent* event);
     void  set_player(Player *p);
+    void paintEvent(QPaintEvent *event)  ;
+    QPainter *painter;
 public Q_SLOTS:
     void mousePressEvent(QMouseEvent* event);
 

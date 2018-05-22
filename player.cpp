@@ -37,6 +37,7 @@ Player::Player(QWidget *parent) :
 {
   ui->setupUi(this);
 
+
   this->setStyleSheet("background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 rgb(43, 75, 116), stop:1 rgb(197, 245, 254)); ");
   // this->setStyleSheet("background-color: qlineargradient(spread:reflect, x1:0.5, y1:0, x2:0, y2:0, stop:0 rgba(91, 204, 233, 100), stop:1 rgba(32, 80, 96,100)); ");
   QString tabStyle = "QTabBar {width:200;height:20;margin : 1;radius:5; color:white;font:bold;}"
@@ -104,9 +105,20 @@ Player::Player(QWidget *parent) :
 
 
   connect(ui->snapshot_btn, SIGNAL(clicked()), SLOT(capture()));
-  connect(cx->m_player->videoCapture(0), SIGNAL(imageCaptured(QImage)), SLOT(updatePreview(QImage)));
   connect(cx->m_player->videoCapture(0), SIGNAL(saved(QString)), SLOT(onCaptureSaved(QString)));
   connect(cx->m_player->videoCapture(0), SIGNAL(failed()), SLOT(onCaptureError()));
+
+
+  connect(cx->m_player->videoCapture(1), SIGNAL(saved(QString)), SLOT(onCaptureSaved(QString)));
+  connect(cx->m_player->videoCapture(1), SIGNAL(failed()), SLOT(onCaptureError()));
+
+
+  connect(cx->m_player->videoCapture(2), SIGNAL(saved(QString)), SLOT(onCaptureSaved(QString)));
+  connect(cx->m_player->videoCapture(2), SIGNAL(failed()), SLOT(onCaptureError()));
+
+
+  connect(cx->m_player->videoCapture(3), SIGNAL(saved(QString)), SLOT(onCaptureSaved(QString)));
+  connect(cx->m_player->videoCapture(3), SIGNAL(failed()), SLOT(onCaptureError()));
 }
 
 Player::~Player()
@@ -130,10 +142,10 @@ void Player::reSize()
 
   if(cx->m_player->isPlaying())
     {
-      cx->m_renderer1->widget()->resize(cx->m_renderer1->videoRect().width(),cx->m_renderer1->videoRect().height());
-      cx->m_renderer2->widget()->resize(cx->m_renderer2->videoRect().width(),cx->m_renderer2->videoRect().height());
-      cx->m_renderer3->widget()->resize(cx->m_renderer3->videoRect().width(),cx->m_renderer3->videoRect().height());
-      cx->m_renderer4->widget()->resize(cx->m_renderer4->videoRect().width(),cx->m_renderer4->videoRect().height());
+      //      cx->m_renderer1->widget()->resize(cx->m_renderer1->videoRect().width(),cx->m_renderer1->videoRect().height());
+      //      cx->m_renderer2->widget()->resize(cx->m_renderer2->videoRect().width(),cx->m_renderer2->videoRect().height());
+      //      cx->m_renderer3->widget()->resize(cx->m_renderer3->videoRect().width(),cx->m_renderer3->videoRect().height());
+      //      cx->m_renderer4->widget()->resize(cx->m_renderer4->videoRect().width(),cx->m_renderer4->videoRect().height());
 
     }
   qDebug()<< " widget height : " << cx->m_renderer1->widget()->height();
@@ -554,7 +566,7 @@ void Player::on_Play_Btn_clicked()
     {
       cx->m_player->setSpeed(1);
       cx->m_player->play();
-    //  reSize();
+      //  reSize();
     }
 
 }
@@ -765,7 +777,7 @@ void Player::on_full_screen_btn_clicked()
 {
 
 
-    int screen_number = QApplication::desktop()->screenNumber(this);
+  int screen_number = QApplication::desktop()->screenNumber(this);
   QDesktopWidget *desktop = QApplication::desktop();
   if(cx->full_btn_state==0)
     {
@@ -780,7 +792,7 @@ void Player::on_full_screen_btn_clicked()
         }
       if(0==screen_number)
         {
-           cx->showFullScreen();
+          cx->showFullScreen();
         }
 
       cx->full_btn_state=1;
@@ -797,19 +809,41 @@ void Player::exitFullScreen()
   ui->renderer_layout->addWidget(cx);
   this->show();
 }
+
+
 void Player::capture()
 {
-    //m_player->captureVideo();
-    cx->m_player->videoCapture(2)->capture();
+
+  qDebug()<< " captured ";
+    cx->m_player->videoCapture(cx->a)->setCaptureDir("/tmp");
+  cx->m_player->videoCapture(cx->a)->capture();
 
 }
 
 void Player::onCaptureSaved(const QString &path)
 {
-    setWindowTitle(tr("saved to: ") + path);
+  QDateTime d1(QDateTime::currentDateTime());
+  qDebug()<<d1;
+  QString fileName = QFileDialog::getSaveFileName(this, tr("Save File"),
+                         "/Capture"+d1.toString("_yyyyMMdd_hhmmss") +".png",
+                         tr("Images (*.png)"));
+
+
+  if(QFile::copy(path,fileName))
+    {
+      qDebug()<<"success";
+       ui->capture_path->setText("\nCapture Path :\n  " + fileName+"\n" );
+    }
+  else
+    {
+      qDebug()<<"not succes copy ";
+    }
+
+
 }
 
 void Player::onCaptureError()
 {
-    QMessageBox::warning(0, QString::fromLatin1("QtAV video capture"), tr("Failed to capture video frame"));
+  QMessageBox::warning(0, QString::fromLatin1("QtAV video capture"), tr("Failed to capture video frame"));
 }
+

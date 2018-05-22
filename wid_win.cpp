@@ -1,6 +1,7 @@
 #include "wid_win.h"
 #include <player.h>
 #include <QtAVWidgets>
+#include <QPainter>
 using namespace QtAV;
 
 
@@ -45,7 +46,10 @@ wid_win::wid_win()
 
 void wid_win::mousePressEvent(QMouseEvent *event)
 {
-    int a =-1;
+
+
+
+     a =0;
     QWidget * const widget = childAt(event->pos());
     if(widget)
     {
@@ -62,6 +66,10 @@ void wid_win::mousePressEvent(QMouseEvent *event)
             m_renderer2->widget()->setVisible(false);
             m_renderer3->widget()->setVisible(false);
             m_renderer4->widget()->setVisible(false);
+
+
+
+
         }
         if(a==1)
         {
@@ -113,7 +121,9 @@ void wid_win::mousePressEvent(QMouseEvent *event)
         }
         clicked_state=0;
     }
+
     play->reSize();
+      update();
 
 }
 
@@ -131,8 +141,86 @@ void wid_win::keyPressEvent(QKeyEvent* event)
     }
 
 }
+int index=0;
 
 void  wid_win::set_player(Player *p)
 {
     play = p;
+}
+void wid_win::paintEvent(QPaintEvent *event)
+{
+
+
+QPointF f1;
+QPointF f2;
+  int width_render=m_renderer1->widget()->rect().width();
+  int heigt_render=m_renderer1->widget()->rect().height();
+
+
+
+  if(a==-1)
+    {
+      f1.setX(-1);
+      f1.setY(-1);
+      f2.setX(width_render+5);
+      f2.setY(heigt_render+5);
+    }
+
+  if(a==0)
+    {
+      f1.setX(-1);
+      f1.setY(-1);
+      f2.setX(width_render+5);
+      f2.setY(heigt_render+5);
+    }
+
+
+
+
+  if(a==1)
+    {
+      f1.setX(width_render-1);
+      f1.setY(-1);
+      f2.setX(2*width_render+5);
+      f2.setY(heigt_render+5);
+    }
+
+
+
+
+
+
+  if(a==2)
+    {
+      f1.setX(-1);
+      f1.setY(heigt_render-1);
+      f2.setX(width_render+5);
+      f2.setY(2*heigt_render+5);
+    }
+
+
+  if(a==3)
+    {
+      f1.setX(width_render-1);
+      f1.setY(heigt_render-1);
+      f2.setX(2*width_render+5);
+      f2.setY(2*heigt_render+5);
+    }
+
+
+
+
+
+  QRectF recf(f1,f2);
+  qDebug()<<"paint";
+  QPainter p;
+     p.begin(this);
+     p.setBrush(Qt::green);
+     p.drawRect(recf);
+     p.end();
+ //    p.drawRect(0,-heigt_render,width_render,heigt_render);
+
+ //    p.drawRect(0,0,265,265);
+
+   //  p.end();
 }

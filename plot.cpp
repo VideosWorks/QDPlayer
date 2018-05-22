@@ -137,8 +137,8 @@ Plot::Plot( QWidget *parent ):
             Carve1.setRenderHint( QwtPlotItem::RenderAntialiased, true );
     Carve1.setBrush(QBrush(QColor(Qt::black),Qt::SolidPattern));
     Carve1.setBaseline(1000);
-    this->setMaximumHeight(180);
-    this->setMinimumHeight(180);
+    this->setMaximumHeight(162);
+    this->setMinimumHeight(162);
 
     //çercevedeki etikleteri gösterilmesini saglar
     setAutoFillBackground( true);
